@@ -61,7 +61,28 @@ def test_result_submission():
     test_data = {
         "id": "test_submission_001",
         "user": "http://127.0.0.25:5000/user/1/",
-        "frame": "http://127.0.0.25:5000/frames/3598/",
+        "frame": [
+            {
+                "url": "http://127.0.0.25:5000/frames/3598/",
+                "image_url": "/ljfgpemcvkmuadhxabwn_V2_1/frame_000000.jpg",
+                "video_name": "ljfgpemcvkmuadhxabwn_V2_1",
+                "session": "http://127.0.0.25:5000/session/2/",
+                "translation_x": 0.02,
+                "translation_y": 0.01,
+                "translation_z": 0.03,
+                "health_status": 1
+            },
+            {
+                "url": "http://127.0.0.25:5000/frames/4787/",
+                "image_url": "/ljfgpemcvkmuadhxabwn_V2_1/frame_000004.jpg",
+                "video_name": "ljfgpemcvkmuadhxabwn_V2_1",
+                "session": "http://127.0.0.25:5000/session/2/",
+                "translation_x": 0.01,
+                "translation_y": 0.02,
+                "translation_z": 0.01,
+                "health_status": 1
+            }
+        ],
         "detected_objects": [
             {
                 "cls": "0",

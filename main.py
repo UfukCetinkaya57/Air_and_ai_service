@@ -4,7 +4,7 @@ from typing import List
 import json
 import os
 
-from models import FrameData, ResultSubmission
+from models import FrameData
 from config import settings
 
 app = FastAPI(title="TÜBİTAK Yarışma Sunucusu", version="1.0.0")
@@ -100,26 +100,45 @@ async def get_session(session_id: int, client_ip: str = Depends(verify_ip)):
 
 @app.post("/results/")
 async def submit_results(
-    result: ResultSubmission, 
+    frames: List[FrameData], 
     client_ip: str = Depends(verify_ip)
 ):
     """
     Şartnamede belirtilen formatta yarışmacıların sonuçlarını alır.
-    Her bir resim için ayrı ayrı gönderilmelidir.
+    Sadece frame listesi şeklinde gönderilmelidir.
     """
     
     # Sonuçları kaydet (gerçek uygulamada veritabanına kaydedilecek)
     print(f"IP {client_ip}'den sonuç alındı:")
-    print(f"Frame: {result.frame}")
-    print(f"Tespit edilen nesne sayısı: {len(result.detected_objects)}")
-    print(f"Pozisyon tahminleri: {len(result.detected_translations)}")
+    print(f"Gönderilen frame sayısı: {len(frames)}")
+    
+    for i, frame in enumerate(frames):
+        print(f"Frame {i+1}: {frame.url}")
+        print(f"  Video: {frame.video_name}")
+        print(f"  Health Status: {frame.health_status}")
     
     # Başarılı yanıt döndür
     return {
-        "status": "başarılı",
-        "message": "Sonuçlar başarıyla kaydedildi",
-        "frame": result.frame,
-        "timestamp": "2024-01-01T12:00:00Z"
+        "id": 22246,
+        "user": "http://localhost/users/4/",
+        "frame": "http://localhost/frames/4000/",
+        "detected_objects": [
+            {
+                "cls": "http://localhost/classes/1/",
+                "landing_status": "-1",
+                "top_left_x": 262.87,
+                "top_left_y": 734.47,
+                "bottom_right_x": 405.2,
+                "bottom_right_y": 847.3
+            }
+        ],
+        "detected_translations": [
+            {
+                "translation_x": 0.02,
+                "translation_y": 0.01,
+                "translation_z": 0.03
+            }
+        ]
     }
 
 @app.get("/health/")

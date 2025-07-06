@@ -42,7 +42,7 @@ def frame_listesi_al():
                 print(f"  URL: {frame['url']}")
                 print(f"  Görsel: {frame['image_url']}")
                 print(f"  Video: {frame['video_name']}")
-                print(f"  GPS Sağlık: {frame['health_status']}")
+                print(f"  Health Status: {frame['health_status']}")
                 print(f"  Pozisyon: X={frame['translation_x']}, Y={frame['translation_y']}, Z={frame['translation_z']}")
             
             return frames
@@ -63,7 +63,38 @@ def ornek_sonuc_gonder():
     ornek_sonuc = {
         "id": f"test_detection_{timestamp}",
         "user": f"{BASE_URL}/user/test_team/",
-        "frame": f"{BASE_URL}/frames/3598/",
+        "frame": [
+            {
+                "url": f"{BASE_URL}/frames/3598/",
+                "image_url": "/ljfgpemcvkmuadhxabwn_V2_1/frame_000000.jpg",
+                "video_name": "ljfgpemcvkmuadhxabwn_V2_1",
+                "session": f"{BASE_URL}/session/2/",
+                "translation_x": 0.02,
+                "translation_y": 0.01,
+                "translation_z": 0.03,
+                "health_status": 1
+            },
+            {
+                "url": f"{BASE_URL}/frames/4787/",
+                "image_url": "/ljfgpemcvkmuadhxabwn_V2_1/frame_000004.jpg",
+                "video_name": "ljfgpemcvkmuadhxabwn_V2_1",
+                "session": f"{BASE_URL}/session/2/",
+                "translation_x": 0.01,
+                "translation_y": 0.02,
+                "translation_z": 0.01,
+                "health_status": 1
+            },
+            {
+                "url": f"{BASE_URL}/frames/3916/",
+                "image_url": "/ljfgpemcvkmuadhxabwn_V2_1/frame_000008.jpg",
+                "video_name": "ljfgpemcvkmuadhxabwn_V2_1",
+                "session": f"{BASE_URL}/session/2/",
+                "translation_x": "NaN",
+                "translation_y": "NaN",
+                "translation_z": "NaN",
+                "health_status": 0
+            }
+        ],
         "detected_objects": [
             {
                 "cls": "1",

@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, RootModel
 from typing import List, Union, Optional
 
 class FrameData(BaseModel):
@@ -10,7 +10,7 @@ class FrameData(BaseModel):
     translation_x: Union[float, str]  # "NaN" olabilir
     translation_y: Union[float, str]  # "NaN" olabilir
     translation_z: Union[float, str]  # "NaN" olabilir
-    health_status: int
+    health_status: int  # Şartnamede health_status yazıyor
 
 class DetectedObject(BaseModel):
     """Tespit edilen nesne modeli"""
@@ -27,10 +27,6 @@ class DetectedTranslation(BaseModel):
     translation_y: float
     translation_z: float
 
-class ResultSubmission(BaseModel):
+class ResultSubmission(RootModel[List[FrameData]]):
     """Yarışmacıların göndereceği sonuç modeli"""
-    id: str
-    user: str
-    frame: str
-    detected_objects: List[DetectedObject]
-    detected_translations: List[DetectedTranslation] 
+    pass 
