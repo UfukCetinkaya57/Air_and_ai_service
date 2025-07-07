@@ -163,24 +163,24 @@ async def submit_results(
     #     print(f"  Video: {frame.video_name}")
     #     print(f"  Health Status: {frame.health_status}")
 
-    print(response_data)
-    print(response_data["id"])
-    print(response_data["user"])
-    print(response_data["frame"])
-    print(response_data["detected_objects"])
-    print(response_data["detected_translations"])
-
-    classes = 'Person', 'Vehicle', 'UAI', 'UAP'
-    image = cv2.imread(image_path)
-    image = cv2.resize(image, (640, 640))
-
-    for result in response_data["detected_objects"]:
-        cls, x1, y1, x2, y2 = result["cls"], result["top_left_x"], result["top_left_y"], result["bottom_right_x"], \
-            result["bottom_right_y"]
-        cv2.rectangle(image, (x1, y1), (x2, y2), (255, 0, 255), 2)
-        cv2.putText(image, str(classes[int(cls)]), (x1, y1), cv2.FONT_HERSHEY_COMPLEX, (1), (255, 0, 255), 1)
-
-    cv2.imwrite("result_image.jpg", image)
+    # print(response_data)
+    # print(response_data["id"])
+    # print(response_data["user"])
+    # print(response_data["frame"])
+    # print(response_data["detected_objects"])
+    # print(response_data["detected_translations"])
+    #
+    # classes = 'Person', 'Vehicle', 'UAI', 'UAP'
+    # image = cv2.imread(image_path)
+    # image = cv2.resize(image, (640, 640))
+    #
+    # for result in response_data["detected_objects"]:
+    #     cls, x1, y1, x2, y2 = result["cls"], result["top_left_x"], result["top_left_y"], result["bottom_right_x"], \
+    #         result["bottom_right_y"]
+    #     cv2.rectangle(image, (x1, y1), (x2, y2), (255, 0, 255), 2)
+    #     cv2.putText(image, str(classes[int(cls)]), (x1, y1), cv2.FONT_HERSHEY_COMPLEX, (1), (255, 0, 255), 1)
+    #
+    # cv2.imwrite("result_image.jpg", image)
 
     return response_data
 
